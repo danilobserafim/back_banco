@@ -1,6 +1,6 @@
 const express = require("express");
 const clientes = require("./clientes")
-const transacoes = require("./transacoes")
+const movimentacoes = require("./movimentacoes")
 const app = express();
 const cors = require("cors");
 
@@ -9,18 +9,18 @@ app.use(express.json())
 
 app.use(cors())
 app.use("/clientes", clientes)
-app.use("/transacoes", transacoes)
+app.use("/movimentacoes", movimentacoes)
 
 app.get("/", (req, res, next) => {
     res.send({
         message: "escolha a rota desejada",
-        Clientes: "http://localhost:4000/clientes",
-        transacoes: "http://localhost:4000/transacoes",
+        Clientes: "http://localhost:4002/clientes",
+        movimentacoes: "http://localhost:4002/movimentacoes",
 })
 })
 
 
-app.listen(4000);
+app.listen(4002);
 
 
 

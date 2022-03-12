@@ -45,12 +45,12 @@ clientes.post("/", (req, res, next) => {
     })  
 })
 
-clientes.patch("/:id_cliente", (req, res, next) => {
+clientes.patch("/", (req, res, next) => {
     mysql.getConnection((error, conn)=>{
-        conn.query("UPDATE clientes SET  nome_completo = ?, email = ?, senha = ?, saldo = ? WHERE id_cliente = ?;", [ req.body.nome_completo, req.body.email, req.body.senha, req.body.saldo, req.params.id_cliente], (error, resultado, field)=>{
+        conn.query("UPDATE clientes SET  nome_completo = ?, email = ?, senha = ?,  saldo = ? WHERE id_cliente = ?;", [ req.body.nome_completo, req.body.email,req.body.senha, req.body.saldo, req.body.id_cliente], (error, resultado, field)=>{
             conn.release();
             if (error) {
-                return res.status(500).send({Message: "Something is Wrong"})
+                return res.sendStatus(500)
             }
             res.sendStatus(200); 
         })
